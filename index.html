@@ -59,6 +59,27 @@ footer a{color:#2563eb;text-decoration:none}
   .search{flex-direction:column}
   .search button{padding:14px;margin-top:8px}
 }
+  #topBtn{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:999;
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:14px 18px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  display:none;
+  transition:.3s;
+}
+
+#topBtn:hover{
+  transform:translateY(-2px);
+}
 </style>
 </head>
 
@@ -979,7 +1000,23 @@ function calcDebtPaymentRate(){
   document.getElementById("seResult").innerHTML =
     "1人あたり売上は <strong>" + yen(r) + "</strong> です。";
 }
-</script>
+  window.onscroll = function(){
+  const btn = document.getElementById("topBtn");
 
+  if(document.documentElement.scrollTop > 300){
+    btn.style.display = "block";
+  }else{
+    btn.style.display = "none";
+  }
+};
+
+function scrollToTop(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+</script>
+<button id="topBtn" onclick="scrollToTop()">↑ TOP</button>
 </body>
 </html>
